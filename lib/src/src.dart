@@ -5,3 +5,4 @@ export 'routes/routes.dart';
 export 'assets_provider/assets_rovider.dart';
 export 'widgets/widgets.dart';
 export 'custom_paints/custom_paints.dart';
+export 'app_lifecycle/app_lifecycle.dart';

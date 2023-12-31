@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:viral_vibes_mobile/src/routes/route_names.dart';
 import 'package:viral_vibes_mobile/src/src.dart';
 import 'package:viral_vibes_mobile/src/assets_provider/image_provider.dart'
@@ -22,37 +23,38 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.sizeOf(context).height * 0.65,
-            width: MediaQuery.sizeOf(context).width,
+            height: (MediaQuery.sizeOf(context).height * 0.7).h,
+            width: (MediaQuery.sizeOf(context).width).w,
             decoration: ShapeDecoration(
               shape: const RoundedRectangleBorder(),
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
-                image: AssetImage(img.ImageProvider.authScreenImg),
+                image: AssetImage(img.ImageProviders.authScreenImg),
               ),
             ),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment(0, 1),
             child: Container(
-              height: MediaQuery.sizeOf(context).height * 0.4,
-              width: MediaQuery.sizeOf(context).width,
+              height: (MediaQuery.sizeOf(context).height * 0.35),
+              width: (MediaQuery.sizeOf(context).width).w,
               decoration: ShapeDecoration(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(
                       30,
                     ),
                     topRight: Radius.circular(
                       30,
                     ),
-                  ),
+                  ).w,
                 ),
                 color: Palette.primaryBackgroundColor,
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Gap(20),
+                  Gap(20.h),
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -61,7 +63,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           text: "Let's go Viral\n",
                           style: GoogleFonts.nunito(
                             color: Colors.black87,
-                            fontSize: 30,
+                            fontSize: 25.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -69,29 +71,28 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           text: "Together.",
                           style: GoogleFonts.nunito(
                             color: Palette.tetiaryColor,
-                            fontSize: 27,
+                            fontSize: 22.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Gap(10),
+                  // Gap(10.h),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 10,
                       right: 10,
-                    ),
+                    ).r,
                     child: nunitoTextWidget(
                       "Leave your product and content for us and we will let the world know about it.",
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       textAlign: TextAlign.center,
                       color: Colors.black45,
                     ),
                   ),
-                  const Gap(70),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20).h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,20 +101,20 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             GoRouter.of(context).pushNamed(RouteName.login);
                           },
                           child: Container(
-                            height: 50,
-                            width: MediaQuery.sizeOf(context).width * 0.4,
+                            height: 40.h,
+                            width: (MediaQuery.sizeOf(context).width * 0.35).w,
                             decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
                                 side: BorderSide(
-                                    color: Palette.tetiaryColor, width: 2),
-                                borderRadius: BorderRadius.circular(30),
+                                    color: Palette.tetiaryColor, width: 2.w),
+                                borderRadius: BorderRadius.circular(30).r,
                               ),
                             ),
                             child: Center(
                               child: nunitoTextWidget(
                                 'Login',
                                 color: Palette.tetiaryColor,
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -124,11 +125,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             GoRouter.of(context).pushNamed(RouteName.register);
                           },
                           child: Container(
-                            height: 50,
-                            width: MediaQuery.sizeOf(context).width * 0.4,
+                            height: 40.h,
+                            width: (MediaQuery.sizeOf(context).width * 0.35).w,
                             decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(30).r,
                               ),
                               color: Palette.tetiaryColor,
                             ),
@@ -136,7 +137,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                               child: nunitoTextWidget(
                                 'Register',
                                 color: Palette.primaryBackgroundColor,
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -145,6 +146,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                       ],
                     ),
                   ),
+                  Gap(30.h)
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:viral_vibes_mobile/src/src.dart' as src;
@@ -14,13 +15,13 @@ class OnboardingOne extends ConsumerStatefulWidget {
 class _OnboardingOneState extends ConsumerState<OnboardingOne> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
         Align(
-          alignment: const Alignment(0, -0.65),
+          alignment: Alignment(0, -1),
           child: LottieBuilder.asset(
             src.LottieProvider.onboardingOneLottieAnim,
-            height: 300,
+            height: 300.h,
           ),
         ),
         Align(
@@ -29,25 +30,25 @@ class _OnboardingOneState extends ConsumerState<OnboardingOne> {
             padding: const EdgeInsets.only(
               left: 15,
               right: 15,
-            ),
+            ).w,
             child: nunitoTextWidget(
               'Welcome to Viral Vibes.',
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 25.sp,
             ),
           ),
         ),
         Align(
-          alignment: const Alignment(0, 0.23),
+          alignment: Alignment(0, 1 - ScreenUtil().setHeight(0.7)),
           child: Padding(
             padding: const EdgeInsets.only(
               left: 15,
               right: 15,
-            ),
+            ).w,
             child: nunitoTextWidget(
               "Step into a world of effortless social media mastery. Get ready to unleash your brand's potential!",
               fontWeight: FontWeight.w600,
-              fontSize: 16,
+              fontSize: 16.sp,
               textAlign: TextAlign.center,
               color: Colors.black87.withOpacity(0.8),
             ),

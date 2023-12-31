@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:viral_vibes_mobile/src/src.dart' as src;
 
 class OnboardingThree extends ConsumerStatefulWidget {
@@ -14,13 +15,13 @@ class OnboardingThree extends ConsumerStatefulWidget {
 class _OnboardingThreeState extends ConsumerState<OnboardingThree> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
         Align(
           alignment: const Alignment(0, -0.7),
           child: LottieBuilder.asset(
             src.LottieProvider.onboardingTwoLottieAnim,
-            height: 300,
+            height: 300.h,
           ),
         ),
         Align(
@@ -33,7 +34,7 @@ class _OnboardingThreeState extends ConsumerState<OnboardingThree> {
             child: src.nunitoTextWidget(
               'Join our Social Circle.',
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 25.sp,
             ),
           ),
         ),
@@ -43,11 +44,11 @@ class _OnboardingThreeState extends ConsumerState<OnboardingThree> {
             padding: const EdgeInsets.only(
               left: 15,
               right: 15,
-            ),
+            ).r,
             child: src.nunitoTextWidget(
               "Connect, learn, and thrive with a vibrant community. Let's conquer social media together!",
               fontWeight: FontWeight.w600,
-              fontSize: 16,
+              fontSize: 16.sp,
               textAlign: TextAlign.center,
               color: Colors.black87.withOpacity(0.8),
             ),

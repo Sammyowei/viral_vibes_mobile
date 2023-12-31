@@ -3,3 +3,8 @@ export 'onboarding/onboarding.dart';
 export 'auth/auth_screen.dart';
 export 'auth/login_screen.dart';
 export 'auth/register_screen.dart';
+export 'auth/otp_screen.dart';
+export 'home/home_screen.dart';
+export 'home/dashboard_screen.dart';
+export 'home/notification_screen.dart';
+export 'home/service_page.dart';

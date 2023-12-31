@@ -23,4 +23,8 @@ class Palette {
 
 //  Alter native tetiary color
   static Color alternateTertiary = const Color(0xFFE0E3E7);
+
+  static Color cardColor =
+      // const Color(0xFFCC5500);
+      const Color(0xFFFA6800);
 }

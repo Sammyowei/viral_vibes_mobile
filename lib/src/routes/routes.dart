@@ -3,6 +3,7 @@ import 'package:viral_vibes_mobile/src/routes/route_names.dart';
 import 'package:viral_vibes_mobile/src/src.dart';
 
 final routes = GoRouter(
+  // initialLocation: '/auth/otp-verification',
   routes: [
     GoRoute(
       path: '/',
@@ -38,10 +39,39 @@ final routes = GoRouter(
               builder: (context, state) {
                 return const RegisterScreen();
               },
+            ),
+            GoRoute(
+              path: 'otp-verification',
+              name: RouteName.otpVerification,
+              builder: (context, state) {
+                return const OtpScreen();
+              },
             )
           ],
         ),
       ],
     ),
+    GoRoute(
+        path: '/dashboard',
+        name: RouteName.dashboard,
+        builder: (context, state) {
+          return const DashBoardScreen();
+        },
+        routes: [
+          GoRoute(
+            path: 'notification',
+            name: RouteName.notifications,
+            builder: (context, state) {
+              return const NotificationScreen();
+            },
+          ),
+          GoRoute(
+            path: 'service',
+            name: RouteName.service,
+            builder: (context, state) {
+              return const ServiceScreen();
+            },
+          ),
+        ]),
   ],
 );

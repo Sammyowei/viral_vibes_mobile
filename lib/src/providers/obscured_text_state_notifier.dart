@@ -5,9 +5,19 @@ final passwordObscuringTextNotifierProvider =
   return ObscureTextNotifier();
 });
 
-final authStateCompleteNotifierProvider =
+final loginAuthStateCompleteNotifierProvider =
     StateNotifierProvider<ObscureTextNotifier, bool>(
         (ref) => ObscureTextNotifier());
+
+final signUpAuthStateCompleteNotifierProvider =
+    StateNotifierProvider<ObscureTextNotifier, bool>((ref) {
+  return ObscureTextNotifier();
+});
+
+final otpFormStateCompleteNotifierProvider =
+    StateNotifierProvider<BooleanStateNotifier, bool>((ref) {
+  return BooleanStateNotifier();
+});
 
 class ObscureTextNotifier extends StateNotifier<bool> {
   ObscureTextNotifier() : super(false);
@@ -22,5 +32,21 @@ class ObscureTextNotifier extends StateNotifier<bool> {
 
   void show() {
     state = state = false;
+  }
+}
+
+class BooleanStateNotifier extends StateNotifier<bool> {
+  BooleanStateNotifier() : super(false);
+
+  void isTrue() {
+    state = true;
+  }
+
+  void isFalse() {
+    state = false;
+  }
+
+  void tuggleValue() {
+    state = !state;
   }
 }
