@@ -1,11 +1,18 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:async';
+
+import 'package:better_skeleton/skeleton_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:viral_vibes_mobile/src/assets_provider/icons_provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:viral_vibes_mobile/src/providers/order_status_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/providers.dart';
+import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_provider.dart';
+import 'package:viral_vibes_mobile/src/providers/user_data_provider.dart';
+import 'package:viral_vibes_mobile/src/providers/user_service_providers.dart';
 import 'package:viral_vibes_mobile/src/screens/home/order/my_order_screen.dart';
 import 'package:viral_vibes_mobile/src/screens/home/profile_screen.dart';
 import 'package:viral_vibes_mobile/src/screens/home/wallet_screen.dart';
@@ -21,7 +28,7 @@ class DashBoardScreen extends ConsumerStatefulWidget {
 
 class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   late TimeGreatingNotifier greetingNotifier;
-  @override
+  late final AnimationController animationController;
   @override
   void didChangeDependencies() {
     greetingNotifier = ref.watch(greetingStateNotifierProvider.notifier);
@@ -29,31 +36,95 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     super.didChangeDependencies();
   }
 
-  final screens = [
-    const HomeScreen(),
-    const MyOrderScreen(),
-    const WalletScreen(),
-    const ProfileScreen()
-  ];
+  @override
+  void initState() {
+    final insance = ref.refresh(getUserProvider.future);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.secondaryBackgroundColor,
       body: Consumer(
         builder: (context, ref, child) {
-          final currentIndex = ref.watch(bottomNavStateNotifierProvider);
-          return screens[currentIndex];
+          final userProviderr = ref.watch(getUserProvider);
+
+          return userProviderr.when(
+            data: (data) {
+              final userData = ref.watch(dataGetterProvider);
+              final service = ref.refresh(serviceProvider.future);
+
+              userData.userData = data!.toJson();
+
+              final screens = [
+                HomeScreen(user: data),
+                MyOrderScreen(user: data),
+                WalletScreen(user: data),
+                ProfileScreen(user: data)
+              ];
+
+              final currentIndex = ref.watch(bottomNavStateNotifierProvider);
+              return RefreshIndicator(
+                onRefresh: () {
+                  print("hello WOrld");
+                  final user = ref.refresh(getUserProvider.future);
+                  return ref.refresh(orderStatusDataProvider.future);
+                },
+                child: screens[currentIndex],
+              );
+            },
+            error: (error, stackTrace) {
+              return Container(
+                child: Center(
+                  child: MaterialButton(
+                    onPressed: () async {
+                      final Identifier = ref.watch(userProvider);
+
+                      Identifier.identifier;
+
+                      getService(ref);
+                      refUserProvider(ref);
+                    },
+                    child: Text('Refersh'),
+                  ),
+                ),
+              );
+            },
+            loading: () {
+              // return Consumer(
+              //   builder: (context, ref, child) {
+              //     const screens = [
+              //       HomeScreen(),
+              //       MyOrderScreen(),
+              //       WalletScreen(),
+              //       ProfileScreen()
+              //     ];
+
+              //     final currentIndex =
+              //         ref.watch(bottomNavStateNotifierProvider);
+              //     return Skeletonizer(
+              //       child: screens[currentIndex],
+              //     );
+              //   },
+              // );
+
+              return Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
+            },
+          );
         },
       ),
       bottomNavigationBar: Consumer(builder: (context, ref, _) {
         final currentIndex = ref.watch(bottomNavStateNotifierProvider);
+        final theme = ref.watch(themeProvider);
         return BottomNavigationBar(
           enableFeedback: true,
           selectedLabelStyle: GoogleFonts.nunito(
             fontWeight: FontWeight.w600,
           ),
           unselectedLabelStyle: GoogleFonts.nunito(),
-          showUnselectedLabels: false,
+          showUnselectedLabels: true,
           mouseCursor: MouseCursor.defer,
           type: BottomNavigationBarType.shifting,
           onTap: (value) {
@@ -66,7 +137,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 height: 22,
                 color: (currentIndex == 0)
                     ? Palette.tetiaryColor
-                    : const Color(0xFF0039a6).withOpacity(0.4),
+                    : (theme == ThemeMode.light)
+                        ? const Color(0xFF0039a6).withOpacity(0.4)
+                        : Colors.white24,
               ),
               label: 'Home',
             ),
@@ -76,7 +149,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 height: 22,
                 color: (currentIndex == 1)
                     ? Palette.tetiaryColor
-                    : const Color(0xFF0039a6).withOpacity(0.4),
+                    : (theme == ThemeMode.light)
+                        ? const Color(0xFF0039a6).withOpacity(0.4)
+                        : Colors.white24,
               ),
               label: 'My Order',
             ),
@@ -86,7 +161,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 height: 22,
                 color: (currentIndex == 2)
                     ? Palette.tetiaryColor
-                    : const Color(0xFF0039a6).withOpacity(0.4),
+                    : (theme == ThemeMode.light)
+                        ? const Color(0xFF0039a6).withOpacity(0.4)
+                        : Colors.white24,
               ),
               label: 'Wallet',
             ),
@@ -96,16 +173,35 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 height: 22,
                 color: (currentIndex == 3)
                     ? Palette.tetiaryColor
-                    : const Color(0xFF0039a6).withOpacity(0.4),
+                    : (theme == ThemeMode.light)
+                        ? const Color(0xFF0039a6).withOpacity(0.4)
+                        : Colors.white24,
               ),
               label: 'Profile',
             ),
           ],
           currentIndex: currentIndex,
           selectedItemColor: Palette.tetiaryColor,
-          unselectedItemColor: Color(0xFF0039a6).withOpacity(0.4),
+          unselectedItemColor: (theme == ThemeMode.light)
+              ? const Color(0xFF0039a6).withOpacity(0.4)
+              : Colors.white24,
         );
       }),
     );
   }
+}
+
+Future<void> getService(WidgetRef ref) async {
+  return ref
+      .refresh(serviceProvider.future)
+      .then((value) => print('Haaaaaaa We rock'));
+}
+
+Future<void> refUserProvider(WidgetRef ref) async {
+  final user = ref.watch(userProvider);
+
+  // user.identifier = 'samuelsonowei660@gmail.com';
+  return ref
+      .refresh(getUserProvider.future)
+      .then((value) => print(value?.emailAddress));
 }

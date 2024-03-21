@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viral_vibes_mobile/src/providers/providers.dart';
 import 'package:viral_vibes_mobile/src/routes/route_names.dart';
 import 'package:viral_vibes_mobile/src/screens/onboarding/onboarding_one.dart';
 import 'package:viral_vibes_mobile/src/screens/onboarding/onboarding_three.dart';
 import 'package:viral_vibes_mobile/src/screens/onboarding/onboarding_two.dart';
 import 'package:viral_vibes_mobile/src/src.dart';
+
+import '../../providers/theme_provider_state_notifier_provider.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -23,6 +27,26 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     const OnboardingTwo(),
     const OnboardingThree(),
   ];
+
+  bool isDark = false;
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        SystemChrome.setSystemUIOverlayStyle(
+          const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+            systemNavigationBarIconBrightness: Brightness.light,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +59,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 final containerWidth = size.width * 0.31;
                 const containerheight = 6.0;
 
+                final themeModeProvider = ref.watch(themeProvider);
                 final page = ref.watch<int>(onboardingStateProvider);
                 final onPageColor = Palette.tetiaryColor;
-                final pageIndicatorColor = Palette.alternateTertiary;
+                final pageIndicatorColor =
+                    (themeModeProvider == ThemeMode.light)
+                        ? Palette.alternateTertiary
+                        : Palette.alternateTertiary.withOpacity(0.1);
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -62,7 +90,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       ),
                       GestureDetector(
                         onTap: () => ref
-                            .read(onboardingStateProvider.notifier)
+                            .read(
+                              onboardingStateProvider.notifier,
+                            )
                             .pageAtIndex(1),
                         child: Container(
                           height: containerheight,
@@ -190,8 +220,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             right: 20,
                           ),
                           child: GestureDetector(
-                            onTap: () => GoRouter.of(context)
-                                .pushReplacementNamed(RouteName.authentication),
+                            onTap: () async {
+                              final pref =
+                                  await SharedPreferences.getInstance();
+
+                              await pref.setBool("onboarding", true);
+
+                              if (context.mounted) {
+                                GoRouter.of(context)
+                                    .goNamed(RouteName.authentication);
+                              }
+                            },
                             child: Container(
                               height: 50,
                               width: MediaQuery.sizeOf(context).width,
@@ -202,10 +241,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                 color: Palette.tetiaryColor,
                               ),
                               child: Center(
-                                child: nunitoTextWidget('Get Started',
-                                    color: Palette.primaryBackgroundColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20),
+                                child: nunitoTextWidget(
+                                  'Get Started',
+                                  color: Palette.primaryBackgroundColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:viral_vibes_mobile/src/providers/nav_bar_state_notifier.dart';
+import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_provider.dart';
 
 import '../../../src.dart';
 
@@ -15,8 +16,9 @@ class CancelledOrders extends ConsumerStatefulWidget {
 class _CancelledOrdersState extends ConsumerState<CancelledOrders> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Consumer(builder: (context, ref, _) {
+      final theme = ref.watch(themeProvider);
+      return Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
@@ -34,6 +36,9 @@ class _CancelledOrdersState extends ConsumerState<CancelledOrders> {
                   'Oops, nothing to see here!',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  color: (theme == ThemeMode.light)
+                      ? Colors.black87
+                      : Palette.primaryBackgroundColor,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -44,7 +49,9 @@ class _CancelledOrdersState extends ConsumerState<CancelledOrders> {
                     "Looks like you don't have any task available yet. Keep an eye out  for important updates from us.",
                     fontSize: 13,
                     textAlign: TextAlign.center,
-                    color: Colors.black38,
+                    color: (theme == ThemeMode.light)
+                        ? Colors.black38
+                        : Palette.primaryBackgroundColor,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
@@ -71,7 +78,7 @@ class _CancelledOrdersState extends ConsumerState<CancelledOrders> {
             height: 30,
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 }

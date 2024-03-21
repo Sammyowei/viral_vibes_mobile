@@ -5,6 +5,9 @@ final passwordObscuringTextNotifierProvider =
   return ObscureTextNotifier();
 });
 
+final confirmPasswordObscuringTextNotifierProvider =
+    StateNotifierProvider<ObscureTextNotifier, bool>(
+        (ref) => ObscureTextNotifier());
 final loginAuthStateCompleteNotifierProvider =
     StateNotifierProvider<ObscureTextNotifier, bool>(
         (ref) => ObscureTextNotifier());
@@ -17,6 +20,11 @@ final signUpAuthStateCompleteNotifierProvider =
 final otpFormStateCompleteNotifierProvider =
     StateNotifierProvider<BooleanStateNotifier, bool>((ref) {
   return BooleanStateNotifier();
+});
+
+final sendButtonProvider =
+    StateNotifierProvider<ObscureTextNotifier, bool>((ref) {
+  return ObscureTextNotifier();
 });
 
 class ObscureTextNotifier extends StateNotifier<bool> {

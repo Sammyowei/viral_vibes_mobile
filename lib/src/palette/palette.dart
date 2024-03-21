@@ -27,4 +27,9 @@ class Palette {
   static Color cardColor =
       // const Color(0xFFCC5500);
       const Color(0xFFFA6800);
+
+  static Color darkthemeContainerColor = const Color(0xFF121212);
+
+  static Color dartThemeBAckgoundColor =
+      const Color(0xFF000000).withOpacity(0.1);
 }

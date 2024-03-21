@@ -44,4 +44,28 @@ class IconProvider {
   static String threadSvgIcon = 'threads'.svg;
 
   static String verifiedIcon = 'verify'.png;
+
+  static String faceIdIcon = 'face-id'.png;
+
+  static String fingerPrintIcon = 'fingerprint'.png;
+
+  static String googleIcon = 'google'.png;
+
+  static String discordIcon = 'discord'.png;
+
+  static String snapChatIcon = 'snap'.png;
+
+  static String twitchIcon = 'twitch'.png;
+
+  static String websiteIcon = 'web'.png;
+
+  static String reviewsIcon = 'review'.png;
+
+  static String othersIcon = 'other'.png;
+
+  static String everythingIcon = 'everything'.png;
+
+  static String threadIcon = 'threads'.png;
+
+  static String money = 'money'.png;
 }

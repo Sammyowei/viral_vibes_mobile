@@ -3,6 +3,7 @@ import 'package:viral_vibes_mobile/src/palette/palette.dart';
 
 class AppTheme {
   static final theme = ThemeData(
+    useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Palette.tetiaryColor,
       onTertiary: Palette.tetiaryColor,

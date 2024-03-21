@@ -1,13 +1,20 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:viral_vibes_mobile/src/assets_provider/icons_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+
+import 'package:viral_vibes_mobile/src/models/user_model.dart';
+import 'package:viral_vibes_mobile/src/routes/route_names.dart';
 
 import '../src.dart';
 
-Widget walletCard(BuildContext context, Size size, {double amount = 0}) {
-  return Container(
+Widget walletCard(BuildContext context, Size size, {required User user}) {
+  final amount =
+      NumberFormat.currency(decimalDigits: 2, name: 'Naira', symbol: "₦")
+          .format(user.walletBalance);
+  return SizedBox(
     width: size.width,
     height: 200,
     child: Stack(
@@ -85,7 +92,7 @@ Widget walletCard(BuildContext context, Size size, {double amount = 0}) {
                               color: Palette.primaryBackgroundColor,
                               fontWeight: FontWeight.bold),
                           nunitoTextWidget(
-                            '₦ ${amount.toStringAsFixed(2)}',
+                            amount,
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
                             color: Palette.primaryBackgroundColor,
@@ -99,37 +106,42 @@ Widget walletCard(BuildContext context, Size size, {double amount = 0}) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 45,
-                      width: size.width * 0.4,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(
-                            color: Palette.primaryBackgroundColor,
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).pushNamed(RouteName.paymentScreen);
+                      },
+                      child: Container(
+                        height: 45.h,
+                        width: size.width * 0.4,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(
+                              color: Palette.primaryBackgroundColor,
+                            ),
                           ),
+                          color: Palette.alternateTertiary.withOpacity(0.5),
                         ),
-                        color: Palette.alternateTertiary.withOpacity(0.5),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            IconProvider.wallet,
-                            height: 20,
-                            color: Palette.primaryBackgroundColor,
-                          ),
-                          Gap(5),
-                          nunitoTextWidget(
-                            'Add Naira',
-                            fontSize: 14,
-                            color: Palette.primaryBackgroundColor,
-                          )
-                        ],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              IconProvider.wallet,
+                              height: 20,
+                              color: Palette.primaryBackgroundColor,
+                            ),
+                            Gap(5),
+                            nunitoTextWidget(
+                              'Add Naira',
+                              fontSize: 14,
+                              color: Palette.primaryBackgroundColor,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Container(
-                      height: 45,
+                      height: 45.h,
                       width: size.width * 0.4,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
