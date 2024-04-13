@@ -31,6 +31,7 @@ class _ServiceScreenState extends ConsumerState<ServiceScreen> {
           child: nunitoTextWidget(
             'All Services',
             fontWeight: FontWeight.bold,
+            fontSize: 16.sp,
             color: theme == ThemeMode.light
                 ? Colors.black87
                 : Palette.primaryBackgroundColor,
@@ -132,7 +133,7 @@ class _ServiceScreenState extends ConsumerState<ServiceScreen> {
 }
 
 class ServiceContainer extends ConsumerWidget {
-  const ServiceContainer({
+  ServiceContainer({
     super.key,
     required String image,
     required String title,
@@ -140,8 +141,8 @@ class ServiceContainer extends ConsumerWidget {
     FontWeight? fontWeight,
   })  : _image = image,
         _title = title,
-        _fontSize = fontSize ?? 14,
-        _fontWeight = fontWeight ?? FontWeight.bold;
+        _fontSize = fontSize ?? 13.sp,
+        _fontWeight = fontWeight ?? FontWeight.w600;
   final String _image;
   final String _title;
 
@@ -151,12 +152,12 @@ class ServiceContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     return Container(
-      height: 68.h,
-      width: MediaQuery.sizeOf(context).width,
+      height: 75.h,
+      width: MediaQuery.sizeOf(context).width * 0.9,
       child: Row(
         children: [
           CircleAvatar(
-            radius: 15,
+            radius: 20.r,
             backgroundColor: theme == ThemeMode.light
                 ? Palette.primaryBackgroundColor
                 : Palette.alternateTertiary.withOpacity(0.5),

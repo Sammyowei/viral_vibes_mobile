@@ -16,13 +16,13 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
           .format(user.walletBalance);
   return SizedBox(
     width: size.width,
-    height: 200,
+    height: 200.h,
     child: Stack(
       children: [
         Align(
           alignment: const Alignment(0, 0.94),
           child: Container(
-            height: 15,
+            height: 15.h,
             width: size.width * 0.8,
             decoration: ShapeDecoration(
               shape: const RoundedRectangleBorder(
@@ -38,7 +38,7 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            height: 180,
+            height: 180.h,
             width: size.width * 0.9,
             padding: const EdgeInsets.all(8.5),
             decoration: ShapeDecoration(
@@ -62,8 +62,8 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      height: 25,
-                      width: 45,
+                      height: 25.h,
+                      width: 45.w,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -74,7 +74,7 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
                         child: nunitoTextWidget(
                           'NGN',
                           color: Palette.primaryBackgroundColor,
-                          fontSize: 11,
+                          fontSize: 11.sp,
                         ),
                       ),
                     ),
@@ -88,12 +88,12 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
                       child: Column(
                         children: [
                           nunitoTextWidget('Wallet Balance',
-                              fontSize: 12,
+                              fontSize: 12.sp,
                               color: Palette.primaryBackgroundColor,
                               fontWeight: FontWeight.bold),
                           nunitoTextWidget(
                             amount,
-                            fontSize: 23,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                             color: Palette.primaryBackgroundColor,
                           ),
@@ -127,13 +127,13 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
                           children: [
                             SvgPicture.asset(
                               IconProvider.wallet,
-                              height: 20,
+                              height: 20.h,
                               color: Palette.primaryBackgroundColor,
                             ),
                             Gap(5),
                             nunitoTextWidget(
                               'Add Naira',
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               color: Palette.primaryBackgroundColor,
                             )
                           ],
@@ -157,13 +157,13 @@ Widget walletCard(BuildContext context, Size size, {required User user}) {
                         children: [
                           SvgPicture.asset(
                             IconProvider.wallet,
-                            height: 20,
+                            height: 20.h,
                             color: Palette.primaryBackgroundColor,
                           ),
                           Gap(5),
                           nunitoTextWidget(
                             'Add Others',
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             color: Palette.primaryBackgroundColor,
                           )
                         ],

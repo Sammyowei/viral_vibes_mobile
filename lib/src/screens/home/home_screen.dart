@@ -253,7 +253,7 @@ AppBar appBar(BuildContext context, WidgetRef ref, User? user) {
       children: [
         FadeInLeft(
           child: CircleAvatar(
-            radius: 28.r,
+            radius: 20.r,
             backgroundImage: AssetImage(
               ImageProviders.manAvatar,
             ),
@@ -269,7 +269,7 @@ AppBar appBar(BuildContext context, WidgetRef ref, User? user) {
                   children: [
                     nunitoTextWidget(
                       '${user?.userName}',
-                      fontSize: 14.sp,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.bold,
                       color: (theme == ThemeMode.light)
                           ? Colors.black87
@@ -308,7 +308,7 @@ AppBar appBar(BuildContext context, WidgetRef ref, User? user) {
                     final greeting = ref.watch(greetingStateNotifierProvider);
                     return nunitoTextWidget(
                       greeting,
-                      fontSize: 12.sp,
+                      fontSize: 10.sp,
                       color: (theme == ThemeMode.light)
                           ? Colors.black87
                           : Colors.white,
@@ -332,9 +332,10 @@ AppBar appBar(BuildContext context, WidgetRef ref, User? user) {
             //     (theme == ThemeMode.light) ? Colors.black87 : Colors.white,
             child: Icon(
               Icons.notifications,
-              size: 20,
+              size: 20.h,
               color: Palette.tetiaryColor,
             ),
+            radius: 20.r,
           ),
         ),
       ),

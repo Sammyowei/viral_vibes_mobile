@@ -85,7 +85,6 @@ class _SeviceCategoriesScreenState
                 child: ServiceContainer(
                   image: _image,
                   title: service[index],
-                  fontSize: 12,
                 ),
               );
             },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_provider.dart';
@@ -50,8 +51,8 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
                       GoRouter.of(context).pop();
                     },
                     child: Container(
-                      height: 35,
-                      width: 35,
+                      height: 40.h,
+                      width: 40.w,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

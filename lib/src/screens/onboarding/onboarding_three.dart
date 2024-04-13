@@ -44,7 +44,7 @@ class _OnboardingThreeState extends ConsumerState<OnboardingThree> {
             ),
           ),
           Align(
-            alignment: const Alignment(0, 0.23),
+            alignment: const Alignment(0, 0.25),
             child: Padding(
               padding: const EdgeInsets.only(
                 left: 15,
@@ -53,7 +53,7 @@ class _OnboardingThreeState extends ConsumerState<OnboardingThree> {
               child: src.nunitoTextWidget(
                 "Connect, learn, and thrive with a vibrant community. Let's conquer social media together!",
                 fontWeight: FontWeight.w600,
-                fontSize: 16.sp,
+                fontSize: 15.sp,
                 textAlign: TextAlign.center,
                 color: (theme == ThemeMode.dark)
                     ? Colors.white

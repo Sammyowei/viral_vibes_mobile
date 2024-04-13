@@ -62,14 +62,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 30,
+                              radius: 30.r,
                               backgroundImage: AssetImage(
                                 ImageProviders.manAvatar,
                               ),
                             ),
                             Gap(10),
                             Container(
-                              height: 42,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -77,7 +76,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                     children: [
                                       nunitoTextWidget(
                                         '${widget.user?.userName}',
-                                        fontSize: 14.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold,
                                         color: (theme == ThemeMode.light)
                                             ? Colors.black87
@@ -88,7 +87,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                               widget.user?.isVerified == true)
                                           ? Image.asset(
                                               IconProvider.verifiedIcon,
-                                              height: 15,
+                                              height: 15.h,
                                             )
                                           : Container(
                                               height: 15.h,
@@ -131,26 +130,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ],
                         ),
                       ),
-                      Divider(
-                        color: (theme == ThemeMode.light)
-                            ? Colors.black12
-                            : Colors.white12,
-                      ),
-                      Container(
-                        height: 34.h,
-                        child: Row(
-                          children: [
-                            nunitoTextWidget(
-                              'Edit Profile',
-                              fontWeight: FontWeight.w200,
-                              fontSize: 14.sp,
-                              color: (theme == ThemeMode.light)
-                                  ? Colors.black38
-                                  : Colors.white60,
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -160,7 +139,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   milliseconds: 600,
                 ),
                 child: styledContainer(
-                  height: 150,
+                  height: 100.h,
                   width: MediaQuery.sizeOf(context).width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -170,7 +149,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         children: [
                           nunitoTextWidget(
                             'Personal Information',
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w300,
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
@@ -188,6 +167,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           )
                         ],
                       ),
+
                       Divider(
                         color: (theme == ThemeMode.light)
                             ? Colors.black12
@@ -197,8 +177,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           nunitoTextWidget(
-                            'Account Security',
-                            fontSize: 14.sp,
+                            'Account settings',
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w300,
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
@@ -207,35 +187,35 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           GestureDetector(
                             child: Icon(
                               Icons.navigate_next_rounded,
-                              size: 30.r,
+                              size: 30.h,
                             ),
                           ),
                         ],
                       ),
-                      Divider(
-                        color: (theme == ThemeMode.light)
-                            ? Colors.black12
-                            : Colors.white12,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          nunitoTextWidget(
-                            'App Setting',
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w300,
-                            color: (theme == ThemeMode.light)
-                                ? Colors.black87
-                                : Colors.white,
-                          ),
-                          GestureDetector(
-                            child: Icon(
-                              Icons.navigate_next_rounded,
-                              size: 30,
-                            ),
-                          )
-                        ],
-                      ),
+                      // Divider(
+                      //   color: (theme == ThemeMode.light)
+                      //       ? Colors.black12
+                      //       : Colors.white12,
+                      // ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     nunitoTextWidget(
+                      //       'App Setting',
+                      //       fontSize: 13.sp,
+                      //       fontWeight: FontWeight.w300,
+                      //       color: (theme == ThemeMode.light)
+                      //           ? Colors.black87
+                      //           : Colors.white,
+                      //     ),
+                      //     GestureDetector(
+                      //       child: Icon(
+                      //         Icons.navigate_next_rounded,
+                      //         size: 30.h,
+                      //       ),
+                      //     )
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),
@@ -245,7 +225,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   milliseconds: 700,
                 ),
                 child: styledContainer(
-                  height: 208.h,
+                  height: 220.h,
                   width: MediaQuery.sizeOf(context).width,
                   child: Column(
                     children: [
@@ -256,7 +236,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           children: [
                             nunitoTextWidget(
                               'Dark Mode',
-                              fontSize: 14.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w300,
                               color: (theme == ThemeMode.light)
                                   ? Colors.black87
@@ -267,7 +247,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                 final switchValue =
                                     (theme == ThemeMode.light) ? false : true;
                                 return Transform.scale(
-                                  scale: 1.2,
+                                  scale: 1.2.h,
                                   child: Switch(
                                     activeTrackColor: Palette.cardColor,
                                     value: switchValue,
@@ -301,7 +281,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                         return Colors.transparent;
                                       },
                                     ),
-                                    splashRadius: 20,
+                                    splashRadius: 20.r,
                                   ),
                                 );
                               },
@@ -319,7 +299,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         children: [
                           nunitoTextWidget(
                             'Buy Tools',
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w300,
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
@@ -332,7 +312,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             },
                             child: Icon(
                               Icons.navigate_next_rounded,
-                              size: 30,
+                              size: 30.h,
                             ),
                           ),
                         ],
@@ -347,7 +327,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         children: [
                           nunitoTextWidget(
                             'Support',
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w300,
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
@@ -360,7 +340,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             },
                             child: Icon(
                               Icons.navigate_next_rounded,
-                              size: 30,
+                              size: 30.h,
                             ),
                           ),
                         ],
@@ -375,7 +355,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         children: [
                           nunitoTextWidget(
                             'Refer and Earn',
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w300,
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
@@ -388,7 +368,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             },
                             child: Icon(
                               Icons.navigate_next_rounded,
-                              size: 30,
+                              size: 30.h,
                             ),
                           ),
                         ],
@@ -418,7 +398,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     'Sign Out',
                     color: Palette.errorColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14.sp,
+                    fontSize: 13.sp,
                   ),
                 ),
               ),

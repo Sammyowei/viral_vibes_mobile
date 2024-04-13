@@ -40,7 +40,7 @@ class _WalletScreenState extends ConsumerState<WalletScreen> {
           title: nunitoTextWidget(
             'Wallet',
             fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: 16.sp,
             color: (theme == ThemeMode.light)
                 ? Colors.black87
                 : Palette.primaryBackgroundColor,
@@ -48,7 +48,7 @@ class _WalletScreenState extends ConsumerState<WalletScreen> {
           centerTitle: false,
         ),
         body: Container(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10).w,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -61,7 +61,7 @@ class _WalletScreenState extends ConsumerState<WalletScreen> {
                   children: [
                     nunitoTextWidget(
                       'Recent Activities',
-                      fontSize: 14,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
                       color: (theme == ThemeMode.light)
                           ? Colors.black45
@@ -92,7 +92,7 @@ class _WalletScreenState extends ConsumerState<WalletScreen> {
                                     width: size.width * 0.7,
                                     child: Image.asset(
                                       ImageProviders.emptyBox,
-                                      height: 140,
+                                      height: 140.h,
                                     ),
                                   ),
                                   nunitoTextWidget(
@@ -181,7 +181,7 @@ class TransactionContainer extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Palette.cardColor.withOpacity(0.1),
-            radius: 24,
+            radius: 24.r,
             child: Icon(
               Icons.account_balance,
               color: Palette.cardColor,
@@ -192,7 +192,7 @@ class TransactionContainer extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 60,
+                  height: 60.h,
                   width: MediaQuery.sizeOf(context).width,
                   child: Row(
                     children: [
@@ -205,7 +205,7 @@ class TransactionContainer extends StatelessWidget {
                             children: [
                               nunitoTextWidget(
                                 "${transactions?.method}",
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 color: theme == ThemeMode.light
                                     ? Colors.black87
                                     : Palette.primaryBackgroundColor,
@@ -237,7 +237,7 @@ class TransactionContainer extends StatelessWidget {
                       const Gap(20),
                       Container(
                         width: MediaQuery.sizeOf(context).width * 0.34,
-                        padding: const EdgeInsets.only(top: 10, bottom: 5),
+                        padding: const EdgeInsets.only(top: 2.5, bottom: 2.5).r,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -251,7 +251,7 @@ class TransactionContainer extends StatelessWidget {
 
                               return nunitoTextWidget(
                                 '+$formatedAmount',
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 color: theme == ThemeMode.light
                                     ? Colors.black87
                                     : Palette.primaryBackgroundColor,

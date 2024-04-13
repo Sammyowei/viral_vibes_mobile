@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:viral_vibes_mobile/src/providers/url_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/user_service_providers.dart';
 import 'package:viral_vibes_mobile/src/routes/route_names.dart';
-import 'package:viral_vibes_mobile/src/widgets/custom_app_bar.dart';
+
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentDetailScreen extends ConsumerStatefulWidget {
@@ -19,6 +19,7 @@ class _PaymentDetailScreenState extends ConsumerState<PaymentDetailScreen> {
   late final WebViewController _controller;
   @override
   void initState() {
+    super.initState();
     final url = ref.read(urlProvider).url;
 
     _controller = WebViewController()
@@ -33,6 +34,7 @@ class _PaymentDetailScreenState extends ConsumerState<PaymentDetailScreen> {
           print(change.url);
           if (change.url == 'https://api.viralvibes.hawkitpro.com/dashboard') {
             final result = ref.refresh(getUserProvider.future);
+            result;
             GoRouter.of(context).goNamed(
               RouteName.dashboard,
             );

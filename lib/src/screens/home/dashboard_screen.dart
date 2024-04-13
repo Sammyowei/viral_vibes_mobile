@@ -2,12 +2,11 @@
 
 import 'dart:async';
 
-import 'package:better_skeleton/skeleton_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:viral_vibes_mobile/src/providers/order_status_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/providers.dart';
 import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_provider.dart';
@@ -39,6 +38,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   @override
   void initState() {
     final insance = ref.refresh(getUserProvider.future);
+    insance;
     super.initState();
   }
 
@@ -53,6 +53,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
             data: (data) {
               final userData = ref.watch(dataGetterProvider);
               final service = ref.refresh(serviceProvider.future);
+              service;
 
               userData.userData = data!.toJson();
 
@@ -68,6 +69,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 onRefresh: () {
                   print("hello WOrld");
                   final user = ref.refresh(getUserProvider.future);
+                  user;
                   return ref.refresh(orderStatusDataProvider.future);
                 },
                 child: screens[currentIndex],
@@ -120,10 +122,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         final theme = ref.watch(themeProvider);
         return BottomNavigationBar(
           enableFeedback: true,
-          selectedLabelStyle: GoogleFonts.nunito(
-            fontWeight: FontWeight.w600,
-          ),
-          unselectedLabelStyle: GoogleFonts.nunito(),
+          selectedLabelStyle:
+              GoogleFonts.nunito(fontWeight: FontWeight.w600, fontSize: 11.sp),
+          unselectedLabelStyle: GoogleFonts.nunito(fontSize: 10.sp),
           showUnselectedLabels: true,
           mouseCursor: MouseCursor.defer,
           type: BottomNavigationBarType.shifting,
@@ -134,7 +135,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 IconProvider.homeSvg,
-                height: 22,
+                height: 22.h,
                 color: (currentIndex == 0)
                     ? Palette.tetiaryColor
                     : (theme == ThemeMode.light)
@@ -146,7 +147,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 IconProvider.shoppingBag,
-                height: 22,
+                height: 22.h,
                 color: (currentIndex == 1)
                     ? Palette.tetiaryColor
                     : (theme == ThemeMode.light)
@@ -158,7 +159,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 IconProvider.wallet,
-                height: 22,
+                height: 22.h,
                 color: (currentIndex == 2)
                     ? Palette.tetiaryColor
                     : (theme == ThemeMode.light)
@@ -170,7 +171,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 IconProvider.userSvg,
-                height: 22,
+                height: 22.h,
                 color: (currentIndex == 3)
                     ? Palette.tetiaryColor
                     : (theme == ThemeMode.light)
@@ -199,6 +200,7 @@ Future<void> getService(WidgetRef ref) async {
 
 Future<void> refUserProvider(WidgetRef ref) async {
   final user = ref.watch(userProvider);
+  user;
 
   // user.identifier = 'samuelsonowei660@gmail.com';
   return ref

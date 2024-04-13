@@ -37,14 +37,14 @@ class _OnboardingOneState extends ConsumerState<OnboardingOne> {
               child: nunitoTextWidget(
                 'Welcome to Viral Vibes.',
                 fontWeight: FontWeight.bold,
-                fontSize: 30.sp,
+                fontSize: 25.sp,
                 color:
                     (theme == ThemeMode.dark) ? Colors.white : Colors.black87,
               ),
             ),
           ),
           Align(
-            alignment: Alignment(0, 0.23),
+            alignment: Alignment(0, 0.25),
             child: Padding(
               padding: const EdgeInsets.only(
                 left: 15,
@@ -53,7 +53,7 @@ class _OnboardingOneState extends ConsumerState<OnboardingOne> {
               child: nunitoTextWidget(
                 "Step into a world of effortless social media mastery. Get ready to unleash your brand's potential!",
                 fontWeight: FontWeight.w600,
-                fontSize: 16.sp,
+                fontSize: 15.sp,
                 textAlign: TextAlign.center,
                 color: (theme == ThemeMode.dark)
                     ? Colors.white

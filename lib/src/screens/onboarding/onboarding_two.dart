@@ -44,7 +44,7 @@ class _OnboardingTwoState extends ConsumerState<OnboardingTwo> {
             ),
           ),
           Align(
-            alignment: const Alignment(0, 0.23),
+            alignment: const Alignment(0, 0.25),
             child: Padding(
               padding: const EdgeInsets.only(
                 left: 15,
@@ -53,7 +53,7 @@ class _OnboardingTwoState extends ConsumerState<OnboardingTwo> {
               child: nunitoTextWidget(
                 "Step into a world of effortless social media mastery. Get ready to unleash your brand's potential!",
                 fontWeight: FontWeight.w600,
-                fontSize: 16.sp,
+                fontSize: 15.sp,
                 textAlign: TextAlign.center,
                 color: (theme == ThemeMode.dark)
                     ? Colors.white

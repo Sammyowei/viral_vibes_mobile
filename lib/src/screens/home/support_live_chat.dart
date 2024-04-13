@@ -44,7 +44,7 @@ class _SupportLiveChatScreenState extends ConsumerState<SupportLiveChatScreen> {
 
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
+      ..setBackgroundColor(Colors.white)
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -56,7 +56,7 @@ class _SupportLiveChatScreenState extends ConsumerState<SupportLiveChatScreen> {
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
           },
-          onWebResourceError: (WebResourceError error) {
+          onWebResourceError: (error) {
             debugPrint('''
 Page resource error:
   code: ${error.errorCode}

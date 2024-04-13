@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:intl/intl.dart';
 import 'package:viral_vibes_mobile/src/providers/loading_indicator.dart';
-import 'package:viral_vibes_mobile/src/providers/navigation_state_provider.dart';
+
 import 'package:viral_vibes_mobile/src/providers/order_status_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/price_state_notifier_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/service_manager_provicer.dart';
@@ -61,14 +61,15 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
               color: theme == ThemeMode.light
                   ? Colors.black87
                   : Palette.primaryBackgroundColor,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
           body: Padding(
             padding: const EdgeInsets.all(10).r,
             child: Column(
               children: [
+                Gap(20),
                 Container(
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
@@ -78,50 +79,54 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
                         ? Palette.primaryBackgroundColor
                         : Palette.primaryBackgroundColor.withOpacity(0.1),
                   ),
-                  child: TextFormField(
-                    controller: _urlController,
-                    onChanged: (value) {
-                      final urlRegExp = RegExp(
-                          r'^[a-zA-Z]+:\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?');
-                      if (_quantityController.text.isEmpty ||
-                          value.contains(urlRegExp)) {
-                        ref.read(orderValidProvider.notifier).finishedloading();
-                      } else {
-                        ref.read(orderValidProvider.notifier).isLoading();
-                      }
-                    },
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.only(
-                        top: 10,
-                      ).r,
-                      hintText: 'Enter Link of Post or Page ',
-                      hintStyle: GoogleFonts.nunito(
-                        fontSize: 12.sp,
-                      ),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 14,
-                          bottom: 14,
+                  child: Center(
+                    child: TextFormField(
+                      controller: _urlController,
+                      onChanged: (value) {
+                        final urlRegExp = RegExp(
+                            r'^[a-zA-Z]+:\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?');
+                        if (_quantityController.text.isEmpty ||
+                            value.contains(urlRegExp)) {
+                          ref
+                              .read(orderValidProvider.notifier)
+                              .finishedloading();
+                        } else {
+                          ref.read(orderValidProvider.notifier).isLoading();
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.only(
+                          top: 10,
                         ).r,
-                        child: Icon(
-                          Icons.link,
-                          color: theme == ThemeMode.light
-                              ? Colors.black38
-                              : Palette.alternateTertiary.withOpacity(0.7),
-                          size: 18,
+                        hintText: 'Enter Link of Post or Page ',
+                        hintStyle: GoogleFonts.nunito(
+                          fontSize: 12.sp,
+                        ),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 14,
+                            bottom: 14,
+                          ).r,
+                          child: Icon(
+                            Icons.link,
+                            color: theme == ThemeMode.light
+                                ? Colors.black38
+                                : Palette.alternateTertiary.withOpacity(0.7),
+                            size: 20.h,
+                          ),
                         ),
                       ),
+                      clipBehavior: Clip.antiAlias,
+                      keyboardType: TextInputType.emailAddress,
+                      style: GoogleFonts.nunito(
+                          color: (theme == ThemeMode.light)
+                              ? Colors.black87
+                              : Colors.white,
+                          fontSize: 14.sp),
+                      cursorColor: Palette.tetiaryColor,
+                      cursorHeight: 15.h,
                     ),
-                    clipBehavior: Clip.antiAlias,
-                    keyboardType: TextInputType.emailAddress,
-                    style: GoogleFonts.nunito(
-                        color: (theme == ThemeMode.light)
-                            ? Colors.black87
-                            : Colors.white,
-                        fontSize: 14.sp),
-                    cursorColor: Palette.tetiaryColor,
-                    cursorHeight: 15.h,
                   ),
                 ),
                 Gap(10),
@@ -134,69 +139,73 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
                         ? Palette.primaryBackgroundColor
                         : Palette.primaryBackgroundColor.withOpacity(0.1),
                   ),
-                  child: TextFormField(
-                    controller: _quantityController,
-                    onChanged: (value) {
-                      try {
-                        final urlRegExp = RegExp(
-                            r'^[a-zA-Z]+:\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?');
-                        if (value.isEmpty ||
-                            !_urlController.text.contains(urlRegExp)) {
+                  child: Center(
+                    child: TextFormField(
+                      controller: _quantityController,
+                      onChanged: (value) {
+                        try {
+                          final urlRegExp = RegExp(
+                              r'^[a-zA-Z]+:\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?');
+                          if (value.isEmpty ||
+                              !_urlController.text.contains(urlRegExp)) {
+                            ref
+                                .read(orderValidProvider.notifier)
+                                .finishedloading();
+                          } else {
+                            ref.read(orderValidProvider.notifier).isLoading();
+                          }
+
+                          final doubleValue = int.parse(value);
+                          final convertedRate =
+                              double.parse(service?.rate ?? "0");
+                          ref
+                              .read(priceNotifierProvider.notifier)
+                              .calculatePrice(convertedRate, doubleValue);
+                        } on FormatException catch (_) {
                           ref
                               .read(orderValidProvider.notifier)
                               .finishedloading();
-                        } else {
-                          ref.read(orderValidProvider.notifier).isLoading();
+                          // Handle the invalid input (e.g., show an error message to the user).
+                          print("Invalid input: $value");
+                          ref.read(priceNotifierProvider.notifier).restart();
                         }
-
-                        final doubleValue = int.parse(value);
-                        final convertedRate =
-                            double.parse(service?.rate ?? "0");
-                        ref
-                            .read(priceNotifierProvider.notifier)
-                            .calculatePrice(convertedRate, doubleValue);
-                      } on FormatException catch (_) {
-                        ref.read(orderValidProvider.notifier).finishedloading();
-                        // Handle the invalid input (e.g., show an error message to the user).
-                        print("Invalid input: $value");
-                        ref.read(priceNotifierProvider.notifier).restart();
-                      }
-                    },
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.only(
-                        top: 10,
-                      ).r,
-                      hintText: 'Quantity of order',
-                      hintStyle: GoogleFonts.nunito(
-                        fontSize: 12.sp,
-                      ),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 14,
-                          bottom: 14,
+                      },
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.only(
+                          top: 10,
                         ).r,
-                        child: Icon(
-                          Icons.production_quantity_limits_rounded,
-                          color: theme == ThemeMode.light
-                              ? Colors.black38
-                              : Palette.alternateTertiary.withOpacity(0.7),
-                          size: 18,
+                        hintText: 'Quantity of order',
+                        hintStyle: GoogleFonts.nunito(
+                          fontSize: 11.sp,
+                        ),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 14,
+                            bottom: 14,
+                          ).r,
+                          child: Icon(
+                            Icons.production_quantity_limits_rounded,
+                            color: theme == ThemeMode.light
+                                ? Colors.black38
+                                : Palette.alternateTertiary.withOpacity(0.7),
+                            size: 20.h,
+                          ),
                         ),
                       ),
+                      clipBehavior: Clip.antiAlias,
+                      style: GoogleFonts.nunito(
+                          color: (theme == ThemeMode.light)
+                              ? Colors.black87
+                              : Colors.white,
+                          fontSize: 14.sp),
+                      keyboardType: TextInputType.number,
+                      cursorColor: Palette.tetiaryColor,
+                      cursorHeight: 15.h,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                     ),
-                    clipBehavior: Clip.antiAlias,
-                    style: GoogleFonts.nunito(
-                        color: (theme == ThemeMode.light)
-                            ? Colors.black87
-                            : Colors.white,
-                        fontSize: 14.sp),
-                    keyboardType: TextInputType.number,
-                    cursorColor: Palette.tetiaryColor,
-                    cursorHeight: 15.h,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
                   ),
                 ),
                 const Gap(5),
@@ -240,7 +249,7 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
                           return nunitoTextWidget(
                             formatedCurency.format(price),
                             fontWeight: FontWeight.w700,
-                            fontSize: 16.sp,
+                            fontSize: 12.sp,
                             color: Palette.primaryBackgroundColor,
                           );
                         },
@@ -329,9 +338,11 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
                           }
 
                           final data = ref.refresh(getUserProvider.future);
+                          data;
 
                           final services =
                               ref.refresh(orderStatusDataProvider.future);
+                          services;
 
                           return;
                         }
@@ -347,10 +358,12 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
                       ? CircularProgressIndicator.adaptive(
                           backgroundColor: Palette.primaryBackgroundColor,
                         )
-                      : nunitoTextWidget('Continue',
-                          fontSize: 14.sp,
+                      : nunitoTextWidget(
+                          'Continue',
+                          fontSize: 13.sp,
                           color: Palette.primaryBackgroundColor,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        ),
                 ),
               ],
             ),
@@ -374,8 +387,8 @@ class _ServiceOrderPageState extends ConsumerState<ServiceOrderPage> {
 
 Widget getMinMax(int min, int max, int index, Color color) {
   final value = [
-    nunitoTextWidget('min: $min', fontSize: 11.sp, color: color),
-    nunitoTextWidget('max: $max', fontSize: 11.sp, color: color),
+    nunitoTextWidget('min: $min', fontSize: 10.sp, color: color),
+    nunitoTextWidget('max: $max', fontSize: 10.sp, color: color),
   ];
   return value[index];
 }

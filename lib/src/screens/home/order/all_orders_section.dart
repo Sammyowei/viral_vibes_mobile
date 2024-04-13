@@ -133,7 +133,7 @@ class OrderContainer extends ConsumerWidget {
         children: [
           CircleAvatar(
             backgroundColor: Palette.cardColor.withOpacity(0.1),
-            radius: 20,
+            radius: 20.r,
             child: Icon(
               Icons.account_balance,
               color: Palette.cardColor,
@@ -144,20 +144,20 @@ class OrderContainer extends ConsumerWidget {
             child: Column(
               children: [
                 Container(
-                  height: 84,
+                  height: 84.h,
                   width: MediaQuery.sizeOf(context).width,
                   child: Row(
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          padding: const EdgeInsets.only(top: 5, bottom: 5).r,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               nunitoTextWidget(
                                 "${order?.link!}",
-                                fontSize: 11.sp,
+                                fontSize: 10.sp,
                                 color: theme == ThemeMode.light
                                     ? Colors.black87
                                     : Palette.primaryBackgroundColor,
@@ -171,7 +171,7 @@ class OrderContainer extends ConsumerWidget {
                                         ? Colors.black38
                                         : Palette.alternateTertiary
                                             .withOpacity(0.5),
-                                    fontSize: 9.5.sp,
+                                    fontSize: 9.sp,
                                   );
                                 },
                               )
@@ -194,7 +194,7 @@ class OrderContainer extends ConsumerWidget {
 
                               return nunitoTextWidget(
                                 'remains: +$formatedNumber',
-                                fontSize: 12.sp,
+                                fontSize: 10.sp,
                                 color: theme == ThemeMode.light
                                     ? Colors.black87
                                     : Palette.primaryBackgroundColor,
@@ -203,7 +203,7 @@ class OrderContainer extends ConsumerWidget {
                             }),
                             nunitoTextWidget(
                               order?.status ?? 'successful',
-                              fontSize: 12.sp,
+                              fontSize: 10.sp,
                               color: (order!.status == 'Completed')
                                   ? Colors.green
                                   : Colors.red,

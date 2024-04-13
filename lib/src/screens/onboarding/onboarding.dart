@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -57,7 +58,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               builder: (context, ref, child) {
                 final size = MediaQuery.sizeOf(context);
                 final containerWidth = size.width * 0.31;
-                const containerheight = 6.0;
+                final containerheight = 6.0.h;
 
                 final themeModeProvider = ref.watch(themeProvider);
                 final page = ref.watch<int>(onboardingStateProvider);
@@ -158,8 +159,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                               onboardingStateProvider.notifier)
                                           .previous(),
                                       child: Container(
-                                        height: 40,
-                                        width: 40,
+                                        height: 40.h,
+                                        width: 40.w,
                                         decoration: ShapeDecoration(
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -170,7 +171,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                         child: Center(
                                           child: Icon(
                                             Icons.navigate_before_rounded,
-                                            size: 35,
+                                            size: 35.h,
                                             color:
                                                 Palette.primaryBackgroundColor,
                                           ),
@@ -187,8 +188,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                     .read(onboardingStateProvider.notifier)
                                     .next(_pages.length - 1),
                                 child: Container(
-                                  height: 40,
-                                  width: 40,
+                                  height: 40.h,
+                                  width: 40.w,
                                   decoration: ShapeDecoration(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -198,7 +199,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                   child: Center(
                                     child: Icon(
                                       Icons.navigate_next_rounded,
-                                      size: 35,
+                                      size: 35.h,
                                       color: Palette.primaryBackgroundColor,
                                     ),
                                   ),
@@ -232,7 +233,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                               }
                             },
                             child: Container(
-                              height: 50,
+                              height: 50.h,
                               width: MediaQuery.sizeOf(context).width,
                               decoration: ShapeDecoration(
                                 shape: RoundedRectangleBorder(
@@ -245,7 +246,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                   'Get Started',
                                   color: Palette.primaryBackgroundColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                 ),
                               ),
                             ),

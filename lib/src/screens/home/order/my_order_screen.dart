@@ -1,5 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:viral_vibes_mobile/src/providers/order_status_provider.dart';
 import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_provider.dart';
@@ -42,16 +45,17 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
           title: nunitoTextWidget(
             'My Orders',
             fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: 16.sp,
             color: (theme == ThemeMode.light)
                 ? Colors.black87
                 : Palette.primaryBackgroundColor,
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20).r,
           child: Column(
             children: [
+              Gap(30),
               Container(
                 width: size.width,
                 child: TabBar(
@@ -74,9 +78,11 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
                       ? Colors.black54
                       : Palette.primaryBackgroundColor,
                   splashBorderRadius: BorderRadius.circular(30),
+
                   onTap: (value) {
                     _controller.animateTo(value);
                   },
+                  labelStyle: GoogleFonts.nunito(fontSize: 10.sp),
                   tabs: const [
                     Tab(
                       text: 'All Orders',
@@ -87,6 +93,8 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
                   ],
                 ),
               ),
+
+              Gap(20),
               Consumer(
                 builder: (context, ref, child) {
                   final orderStatusProvider =

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +16,6 @@ import 'package:viral_vibes_mobile/src/providers/theme_provider_state_notifier_p
 import 'package:viral_vibes_mobile/src/providers/user_service_providers.dart';
 import 'package:viral_vibes_mobile/src/routes/route_names.dart';
 import 'package:viral_vibes_mobile/src/services/auth_state_client.dart';
-import 'package:viral_vibes_mobile/src/services/local_auth/biometric_authentication_client.dart';
 import 'package:viral_vibes_mobile/src/services/local_auth/local_auth.dart';
 import 'package:viral_vibes_mobile/src/src.dart';
 import 'package:viral_vibes_mobile/src/utils/user_auth/user_auth_client.dart';
@@ -104,13 +103,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 children: [
                   nunitoTextWidget(
                     'Login',
-                    fontSize: 20.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
                     color: (theme == ThemeMode.light)
                         ? Colors.black87
                         : Colors.white,
                   ),
-                  Gap(10.h),
+                  Gap(10),
                   nunitoTextWidget(
                     "Welcome back, Viber! Ready to reignite and amplify? Let's go viral, baby! 🌟🔥",
                     fontWeight: FontWeight.normal,
@@ -120,7 +119,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ? Colors.black54
                         : Colors.white70,
                   ),
-                  Gap(20.h),
+                  Gap(20),
                   RichText(
                     text: TextSpan(
                       children: [
@@ -130,7 +129,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
                                 : Colors.white,
-                            fontSize: 16.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -138,7 +137,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           text: "*",
                           style: GoogleFonts.nunito(
                             color: Palette.errorColor,
-                            fontSize: 16.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -146,6 +145,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   Container(
+                    height: 45.h,
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20).r,
@@ -154,54 +154,55 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ? Palette.primaryBackgroundColor
                           : Palette.primaryBackgroundColor.withOpacity(0.1),
                     ),
-                    child: TextFormField(
-                      controller: _emailController,
-                      onChanged: (value) {
-                        if (value.length > 5 &&
-                            _passwordController.text.length >= 8) {
-                          ref
-                              .read(loginAuthStateCompleteNotifierProvider
-                                  .notifier)
-                              .hide();
-                        } else {
-                          ref
-                              .read(loginAuthStateCompleteNotifierProvider
-                                  .notifier)
-                              .show();
-                        }
-                      },
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.only(
-                          top: 10,
-                        ).r,
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 14,
-                            bottom: 14,
+                    child: Center(
+                      child: TextFormField(
+                        controller: _emailController,
+                        onChanged: (value) {
+                          if (value.length > 5 &&
+                              _passwordController.text.length >= 8) {
+                            ref
+                                .read(loginAuthStateCompleteNotifierProvider
+                                    .notifier)
+                                .hide();
+                          } else {
+                            ref
+                                .read(loginAuthStateCompleteNotifierProvider
+                                    .notifier)
+                                .show();
+                          }
+                        },
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.only(
+                            top: 10,
                           ).r,
-                          child: Image.asset(
-                            IconProvider.user,
-                            height: 5.h,
-                            width: 5.w,
-                            color: (theme == ThemeMode.light)
-                                ? Colors.black38
-                                : Colors.white38,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 14,
+                              bottom: 14,
+                            ).r,
+                            child: Image.asset(
+                              IconProvider.user,
+                              height: 20.h,
+                              color: (theme == ThemeMode.light)
+                                  ? Colors.black38
+                                  : Colors.white38,
+                            ),
                           ),
                         ),
+                        clipBehavior: Clip.antiAlias,
+                        keyboardType: TextInputType.emailAddress,
+                        style: GoogleFonts.nunito(
+                          color: (theme == ThemeMode.light)
+                              ? Colors.black87
+                              : Colors.white,
+                        ),
+                        cursorColor: Palette.tetiaryColor,
+                        cursorHeight: 15.h,
                       ),
-                      clipBehavior: Clip.antiAlias,
-                      keyboardType: TextInputType.emailAddress,
-                      style: GoogleFonts.nunito(
-                        color: (theme == ThemeMode.light)
-                            ? Colors.black87
-                            : Colors.white,
-                      ),
-                      cursorColor: Palette.tetiaryColor,
-                      cursorHeight: 15.h,
                     ),
                   ),
-                  Gap(10.h),
+                  Gap(10),
                   RichText(
                     text: TextSpan(
                       children: [
@@ -211,7 +212,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             color: (theme == ThemeMode.light)
                                 ? Colors.black87
                                 : Colors.white,
-                            fontSize: 16.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -219,7 +220,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           text: "*",
                           style: GoogleFonts.nunito(
                             color: Palette.errorColor,
-                            fontSize: 16.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -227,6 +228,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   Container(
+                    height: 45.h,
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20).r,
@@ -239,86 +241,86 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       builder: (context, ref, child) {
                         final isObscrued = ref
                             .watch<bool>(passwordObscuringTextNotifierProvider);
-                        return TextFormField(
-                          controller: _passwordController,
-                          obscureText: isObscrued,
-                          onChanged: (value) {
-                            if (value.length >= 8 &&
-                                _emailController.text.length > 5) {
-                              ref
-                                  .read(loginAuthStateCompleteNotifierProvider
-                                      .notifier)
-                                  .hide();
-                            } else {
-                              ref
-                                  .read(loginAuthStateCompleteNotifierProvider
-                                      .notifier)
-                                  .show();
-                            }
-                          },
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.only(
-                              top: 10,
-                            ).r,
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 14,
-                                bottom: 14,
+                        return Center(
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: isObscrued,
+                            onChanged: (value) {
+                              if (value.length >= 8 &&
+                                  _emailController.text.length > 5) {
+                                ref
+                                    .read(loginAuthStateCompleteNotifierProvider
+                                        .notifier)
+                                    .hide();
+                              } else {
+                                ref
+                                    .read(loginAuthStateCompleteNotifierProvider
+                                        .notifier)
+                                    .show();
+                              }
+                            },
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.only(
+                                top: 10,
                               ).r,
-                              child: Image.asset(
-                                IconProvider.password,
-                                height: 5.h,
-                                width: 5.w,
-                                color: (theme == ThemeMode.light)
-                                    ? Colors.black38
-                                    : Colors.white38,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 14,
+                                  bottom: 14,
+                                ).r,
+                                child: Image.asset(
+                                  IconProvider.password,
+                                  height: 20.h,
+                                  color: (theme == ThemeMode.light)
+                                      ? Colors.black38
+                                      : Colors.white38,
+                                ),
                               ),
-                            ),
-                            suffixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 14, bottom: 14).r,
-                              child: GestureDetector(
-                                onTap: () {
-                                  ref
-                                      .read(
-                                          passwordObscuringTextNotifierProvider
-                                              .notifier)
-                                      .tuggle();
-                                },
-                                child: SizedBox(
-                                  height: 10.h,
-                                  width: 10.w,
-                                  child: isObscrued
-                                      ? Image.asset(
-                                          IconProvider.seen,
-                                          height: 5.h,
-                                          width: 5.w,
-                                          color: (theme == ThemeMode.light)
-                                              ? Colors.black38
-                                              : Colors.white38,
-                                        )
-                                      : Image.asset(
-                                          IconProvider.hide,
-                                          height: 5.h,
-                                          width: 5.w,
-                                          color: (theme == ThemeMode.light)
-                                              ? Colors.black38
-                                              : Colors.white38,
-                                        ),
+                              suffixIcon: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 14, bottom: 14)
+                                        .r,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    ref
+                                        .read(
+                                            passwordObscuringTextNotifierProvider
+                                                .notifier)
+                                        .tuggle();
+                                  },
+                                  child: SizedBox(
+                                    height: 10.h,
+                                    width: 10.w,
+                                    child: isObscrued
+                                        ? Image.asset(
+                                            IconProvider.seen,
+                                            height: 50.h,
+                                            color: (theme == ThemeMode.light)
+                                                ? Colors.black38
+                                                : Colors.white38,
+                                          )
+                                        : Image.asset(
+                                            IconProvider.hide,
+                                            height: 50.h,
+                                            color: (theme == ThemeMode.light)
+                                                ? Colors.black38
+                                                : Colors.white38,
+                                          ),
+                                  ),
                                 ),
                               ),
                             ),
+                            clipBehavior: Clip.antiAlias,
+                            keyboardType: TextInputType.visiblePassword,
+                            style: GoogleFonts.nunito(
+                              color: (theme == ThemeMode.light)
+                                  ? Colors.black87
+                                  : Colors.white,
+                            ),
+                            cursorColor: Palette.tetiaryColor,
+                            cursorHeight: 15.h,
                           ),
-                          clipBehavior: Clip.antiAlias,
-                          keyboardType: TextInputType.visiblePassword,
-                          style: GoogleFonts.nunito(
-                            color: (theme == ThemeMode.light)
-                                ? Colors.black87
-                                : Colors.white,
-                          ),
-                          cursorColor: Palette.tetiaryColor,
-                          cursorHeight: 15.h,
                         );
                       },
                     ),
@@ -333,7 +335,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Gap(20.h),
+                  Gap(20),
                   Center(
                     child: Consumer(
                       builder: (context, ref, child) {
@@ -452,13 +454,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                             minWidth:
                                 (MediaQuery.sizeOf(context).width * 0.7).w,
-                            height: 45.h,
+                            height: 40.h,
                             child: loadingIndicator == false
                                 ? nunitoTextWidget(
                                     'Login',
                                     color: Palette.primaryBackgroundColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16.sp,
+                                    fontSize: 15.sp,
                                   )
                                 : CircularProgressIndicator(
                                     color: Palette.primaryBackgroundColor,
@@ -475,7 +477,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         color: (theme == ThemeMode.light)
                             ? Colors.black87
                             : Colors.white,
-                        fontSize: 14.sp,
+                        fontSize: 13.sp,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -485,7 +487,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           "Register.",
                           color: Palette.tetiaryColor,
                           fontWeight: FontWeight.w600,
-                          fontSize: 14.sp,
+                          fontSize: 13.sp,
                         ),
                       ),
                     ],
